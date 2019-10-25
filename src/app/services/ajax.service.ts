@@ -3,8 +3,8 @@ import { Router } from "@angular/router";
 
 import axios from 'axios';
 
-// var url = 'http://api.community.cycron.swiss';
-var url = 'http://127.0.0.1:8181';
+// var url = 'http://api.cycron.xyz/v1';
+var url = 'http://localhost:3000/v1';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ class AjaxService {
   }
 
   private makeUrl (path) : string {
-    return this.url + '/api/' + path;
+    return this.url + '/' + path;
   }
 
   private makeUrlBase (path) : string {
@@ -38,7 +38,7 @@ class AjaxService {
     if (token) {
       options = {
         headers: {
-          'Authorization': 'Bearer ' + token
+          token
         }
       };
     }
@@ -46,7 +46,7 @@ class AjaxService {
     axios.post(this.makeUrl(path), data, options).then(function (response) {
       callback(response.data);
     }).catch(function (error) {
-      errorsCallback(error.response.data.error.errors);
+      errorsCallback(error.err);
       console.log(error);
     });
   }
@@ -63,7 +63,7 @@ class AjaxService {
     if (token) {
       options = {
         headers: {
-          'Authorization': 'Bearer ' + token
+          token
         }
       };
     }
@@ -71,7 +71,7 @@ class AjaxService {
     axios.delete(this.makeUrl(path), options).then(function (response) {
       callback(response.data);
     }).catch(function (error) {
-      errorsCallback(error.response.data.error.errors);
+      errorsCallback(error.err);
       console.log(error);
     });
   }
@@ -87,7 +87,7 @@ class AjaxService {
     if (token) {
       options = {
         headers: {
-          'Authorization': 'Bearer ' + token
+          token
         }
       };
     }
@@ -95,7 +95,7 @@ class AjaxService {
     axios.get(this.makeUrl(path), options).then(function (response) {
       callback(response.data);
     }).catch(function (error) {
-      errorsCallback(error.response.data.error.errors, error.response.data);
+      errorsCallback(error.err);
       console.log(error);
     });
 
@@ -108,7 +108,7 @@ class AjaxService {
     axios.get(this.makeUrlBase(path), options).then(function (response) {
       callback(response.data);
     }).catch(function (error) {
-      errorsCallback(error.response.data.error.errors, error.response.data);
+      errorsCallback(error.err, error);
       console.log(error);
     });
 
