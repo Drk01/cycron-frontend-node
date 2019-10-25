@@ -1,0 +1,56 @@
+<app-preloader [status]="preloader"></app-preloader>
+
+<main class="internal-page post_detail">
+
+    <div class="cd-index cd-main-content">
+
+        <!-- Page Content -->
+        <div id="page-content" class="light-content">
+
+            <!-- Navbar -->
+            <app-navbar></app-navbar>
+
+            <!-- Main -->
+            <div *ngIf="post.id" class="billboard bootstrap-wrapper" [style.background-image]="'url('+base_url+post.image+')'">
+                <div class="bg">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="title">
+                                    {{post.title}}
+                                    <p style="opacity: .8">
+                                        Posted on: {{moment(post.created_at).calendar()}}
+                                        - Updated: {{moment(post.updated_at).calendar()}}
+                                        - {{post.number_of_visits.toLocaleString()}} Visits
+                                    </p>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="post.id" class="internal-main animated fadeIn" style="padding-top: 50px; padding-bottom: 50px;">
+                <div class="container-fluid">
+                    <div class="bootstrap-wrapper">
+                        <div class="col-lg-12" *ngIf="user">
+                            <div [innerHTML]="post.description | sanitizeHtml"></div>
+                        </div>
+
+                        <div class="col-lg-12" *ngIf="!user">
+                        <div [innerHTML]="post.description | sanitizeHtml" class="post_description"></div>
+                            <div class="toast-dark" style="margin-top: 25px;" >
+                                Excuse the complete content, registering in the following link: <a (click)="goTo(['register'])" style="color: #fff">Register</a> or <a (click)="goTo(['login'])" style="color: #fff">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Main -->
+
+
+        </div>
+        <!--/Page Content -->
+
+    </div>
+</main>

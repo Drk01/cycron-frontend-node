@@ -1,0 +1,41 @@
+<app-preloader [status]="preloader"></app-preloader>
+
+<main class="internal-page cp_home">		
+    
+    <div class="cd-index cd-main-content">
+
+        <!-- Page Content -->
+        <div id="page-content" class="light-content">
+
+            <!-- Navbar -->
+            <app-navbar></app-navbar>
+
+            <!-- Main -->
+            <div class="internal-main animated fadeIn">   
+              <br>  
+              <br>  
+              <div class="bootstrap-wrapper">
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                      <h3>Last signals</h3>
+                      <ul style="padding: 0; margin: 0;">
+                        <li *ngFor="let signal of signals; let i = index" style="font-family: 'Cutive Mono', monospace;list-style: none;padding: 0;margin: 0;border-bottom: 1px white dotted;padding: 30px 0;">
+                          <pre style="font-family: 'Cutive Mono', monospace; padding: 0; margin: 0;">{{signal.message}}</pre>
+                          <pre style="font-family: 'Cutive Mono', monospace; padding: 0; margin: 0;">{{signal.created_at}}</pre>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!--/Main --> 
+            
+            
+        </div>    
+        <!--/Page Content -->
+        
+    </div>
+</main>        
+        

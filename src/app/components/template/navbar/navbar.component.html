@@ -1,0 +1,106 @@
+<!-- Header -->
+<header class="classic-menu animated fadeIn" id="classic_menu">
+    <div id="header-container">
+    
+    
+    <!-- Logo -->
+    <div id="logo" class="hide-ball"> 
+        <a href="/">
+            <img class="black-logo" style="margin-top: 13px; height: 30px;" src="assets/logo.png" alt="Logo">
+            <img class="white-logo" style="height: 30px; margin-top: 13px;" src="assets/logo.png" alt="Logo">
+        </a>
+    </div>
+    <!--/Logo -->             
+    <div class="menu_top" *ngIf="user && pathname != '#/'">
+        <div style="display: block; width: 100%;">
+            <a class="active">
+                    Events & education
+            </a>
+            <a (click)="goTo(['/the-brain'])">
+                The Brain
+            </a>
+            <a>
+                Investiments
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>                 
+        <div class="nav-height">
+            <div class="outer">
+                <div class="inner">   
+                    <ul data-breakpoint="1025" class="flexnav" *ngIf="!user">                    
+                        <li class="link menu-timeline">
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li class="link menu-timeline" *ngIf="!user">
+                            <a (click)="goTo(['/about'])">About</a>
+                        </li>
+
+                        <li class="link menu-timeline" *ngIf="!user">
+                            <a (click)="goTo(['/login'])">Login</a>
+                        </li>
+                    </ul>  
+                    
+
+                    <ul data-breakpoint="1025" class="flexnav" *ngIf="user && pathname != '#/'">                    
+                        <li class="link menu-timeline">
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li class="link menu-timeline">
+                            <a (click)="goTo(['/cp'])">My dashboard</a>
+                        </li>
+
+                        <li class="link menu-timeline" *ngIf="user.role == 0">
+                            <a (click)="goTo(['/cp'])">Packages</a>
+                        </li>
+                    </ul>      
+
+                    <ul data-breakpoint="1025" class="flexnav" *ngIf="user && pathname == '#/'">                    
+                        <li class="link menu-timeline">
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li class="link menu-timeline">
+                            <a (click)="goTo(['/cp'])">My dashboard</a>
+                        </li>
+                    </ul>            
+                </div>
+            </div> 
+        </div>          
+    </nav>
+    <!--/Navigation -->
+    
+    <!-- Menu Burger -->
+    <div id="burger-wrapper" class="parallax-wrap">
+        <div id="menu-burger" class="parallax-element">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--/Menu Burger -->
+
+    </div>
+    <div *ngIf="user && pathname != '#/'" class="sub_nav animated fadeIn"> 
+        <div class="container-fluid">
+            <div class="bootstrap-wrapper">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6">
+                        <div *ngIf="user && user.role == 1" style="text-align: left !important" class="menu_admin_">
+                            <a (click)="goTo(['/cp/user'])">Users control</a>
+                            <a (click)="goTo(['/cp/admin-post'])">Posts control</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        Welcome: {{user.name}}, <a (click)="signout()">Signout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--/Header -->      

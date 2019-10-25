@@ -1,0 +1,162 @@
+<app-preloader [status]="preloader"></app-preloader>
+
+<main class="internal-page cp_home">		
+    
+    <div class="cd-index cd-main-content">
+
+        <!-- Page Content -->
+        <div id="page-content" class="light-content">
+
+            <!-- Navbar -->
+            <app-navbar></app-navbar>
+
+            <!-- Main -->
+            <div class="internal-main animated fadeIn">   
+                <div class="homeSlider">
+                    <owl-carousel
+                        [options]="{items: 1, dots: true, navigation: true, autoplay: false}"
+                        [items]="slider_items"
+                        [carouselClasses]="['owl-theme', 'sliding', 'homeSlider']">
+                        <div class="item" *ngFor="let item of slider_items; let i = index">
+                            <div class="itemContent" [style.background-image]="'url('+base_url+item.image+')'" *ngIf="item.type=='post'">
+                                <div class="bg_gradinent" (click)="goTo(['cp/post/'+item.id+'/'+PostSlug(item.title)])">
+                                    <div class="bootstrap-wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3>
+                                                    ({{item.type}}) {{item.title}} 
+                                                    <span>
+                                                        ID: {{item.id}} <br> {{moment(item.created_at).calendar()}} 
+                                                    </span>
+                                                </h3> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="itemContent" [style.background-image]="'url(../../../../assets/bgeventslider.jpg)'" *ngIf="item.type=='event'">
+                                <div class="bg_gradinent">
+                                    <div class="bootstrap-wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3>
+                                                    ({{item.type}}) {{item.title}} 
+                                                    <span>
+                                                        {{item.description}} 
+                                                    </span>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </owl-carousel>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="bootstrap-wrapper news billboard" *ngIf="posts_billboard.length == 0">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-4">
+                                <span class="error-text">
+                                    We have no publications available to display at this time.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bootstrap-wrapper news billboard" *ngIf="posts_billboard.length >= 4">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="bg_content b" [style.background-image]="'url('+base_url+posts_billboard[0].image+')'">
+                                    <div class="bg_gradinent" (click)="goTo(['cp/post/'+posts_billboard[0].id+'/'+PostSlug(posts_billboard[0].title)])">
+                                        <h3>
+                                            {{posts_billboard[0].title}} 
+                                            <span>
+                                                ID: {{posts_billboard[0].id}} <br> {{moment(posts_billboard[0].created_at).calendar()}} 
+                                            </span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="bg_content a" [style.background-image]="'url('+base_url+posts_billboard[1].image+')'">
+                                    <div class="bg_gradinent" (click)="goTo(['cp/post/'+posts_billboard[1].id+'/'+PostSlug(posts_billboard[1].title)])">
+                                        <h5>
+                                            {{posts_billboard[1].title}} 
+                                            <span>
+                                                ID: {{posts_billboard[1].id}} <br> {{moment(posts_billboard[1].created_at).calendar()}} 
+                                            </span>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="bg_content a" [style.background-image]="'url('+base_url+posts_billboard[2].image+')'">
+                                    <div class="bg_gradinent" (click)="goTo(['cp/post/'+posts_billboard[2].id+'/'+PostSlug(posts_billboard[2].title)])">
+                                        <h5>
+                                            {{posts_billboard[2].title}} 
+                                            <span>
+                                                ID: {{posts_billboard[2].id}} <br> {{moment(posts_billboard[2].created_at).calendar()}} 
+                                            </span>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-4">
+                                <div class="bg_content b" [style.background-image]="'url('+base_url+posts_billboard[3].image+')'">
+                                    <div class="bg_gradinent" (click)="goTo(['cp/post/'+posts_billboard[3].id+'/'+PostSlug(posts_billboard[3].title)])">
+                                        <h3>
+                                            {{posts_billboard[3].title}}
+                                            <span>
+                                                ID: {{posts_billboard[3].id}} <br> {{moment(posts_billboard[3].created_at).calendar()}} 
+                                            </span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bootstrap-wrapper news billboard" infinite-scroll
+                        [infiniteScrollDistance]="2"
+                        [infiniteScrollThrottle]="50"
+                        (scrolled)="onScroll()">
+
+                        <div class="row new_item animated fadeIn" *ngFor="let post of posts; let i = index">
+                            <div class="col-sm-12 col-lg-2">
+                                <div class="content" (click)="goTo(['cp/post/'+post.id])">
+                                    <div class="avatar" [style.background-image]="'url('+base_url+post.image+')'">
+    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-10">
+                                <div class="content" (click)="goTo(['cp/post/'+post.id+'/'+PostSlug(post.title)])">
+                                    <div class="d-block">
+                                        <h5 class="title">
+                                            {{post.title}}
+                                            <span class="visits">
+                                                {{post.number_of_visits.toLocaleString()}} Visits
+                                            </span>
+                                        </h5>
+                                        <p style="opacity: .8">
+                                            ID: {{post.id}} -
+                                            Posted on: {{moment(post.created_at).calendar()}} 
+                                            - Updated: 
+                                            {{moment(post.updated_at).calendar()}}
+                                        </p>
+                                        <p class="description" [innerHTML]="post.description"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+            <!--/Main --> 
+            
+            
+        </div>    
+        <!--/Page Content -->
+        
+    </div>
+</main>        
+        

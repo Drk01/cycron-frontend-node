@@ -1,0 +1,86 @@
+<app-preloader [status]="preloader"></app-preloader>
+
+<main class="internal-page cp_home">
+
+    <div class="cd-index cd-main-content">
+
+        <!-- Page Content -->
+        <div id="page-content" class="light-content">
+
+            <!-- Navbar -->
+            <app-navbar></app-navbar>
+
+            <!-- Main -->
+            <div class="internal-main animated fadeIn">
+                <div class="container-fluid">
+                    <div class="bootstrap-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <br>
+                                <br>
+                                <h2 class="title">
+                                  Usuarios
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row animated fadeIn" *ngIf="selectedUserStatus">
+                            <div class="col-sm-12 col-lg-12">
+                                <form class="form-content">
+                                    <h3>Edit user {{selectedUser.name}}</h3>
+                                    <input type="hidden" [(ngModel)]="selectedUser.id" name="id">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="email" [(ngModel)]="selectedUser.name" class="form-control" id="name" name="name"  placeholder="Enter email">
+                                        <small *ngIf="error.field == 'name' " id="emailHelp" class="form-text text-muted">{{error.message}}</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" [(ngModel)]="selectedUser.email" class="form-control" id="email" placeholder="Enter email" name="email">
+                                        <small *ngIf="error.field == 'email' " id="emailHelp" class="form-text text-muted">{{error.message}}</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <button  class="btn btn-primary" (click)="saveEditUser($event)">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">                                
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Option</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let user of users; let i = index">
+                                        <td scope="row">
+                                            <a (click)="selectedEditUser(user, $event)" style="color: #fff">
+                                                {{user.id}}
+                                            </a>
+                                        </td>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>
+                                            <button  class="btn btn-primary" (click)="selectedEditUser(user, $event)">Edit</button>
+                                            <button  class="btn btn-primary" (click)="deleteUser(user, $event)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Page Content -->
+
+    </div>
+</main>
+

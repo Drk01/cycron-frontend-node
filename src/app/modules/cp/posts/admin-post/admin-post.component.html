@@ -1,0 +1,169 @@
+<app-preloader [status]="preloader"></app-preloader>
+
+<main class="internal-page cp_home">
+
+    <div class="cd-index cd-main-content">
+
+        <!-- Page Content -->
+        <div id="page-content" class="light-content">
+
+            <!-- Navbar -->
+            <app-navbar></app-navbar>
+
+            <!-- Main -->
+            <div class="internal-main animated fadeIn">
+                <div class="container-fluid">
+                    <div class="bootstrap-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <br>
+                                <br>
+                                <h2 class="title">
+                                  Post
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <form (ngSubmit)="saveNewPost($event)" class="form-content">
+                                    <h3>New post</h3>
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" [(ngModel)]="newPost.title" class="form-control" id="title" name="title"  placeholder="Enter title">
+                                        <br>
+                                        <small *ngIf="error.field == 'title' " class="form-text text-muted">{{error.message}}</small>
+                                      </div>
+
+
+                                      <div class="form-group">
+                                        <ckeditor
+                                          [editor]="Editor"
+                                          [(ngModel)]="newPost.description"
+                                          [data]="postAutoSave.description"
+                                          name="description"
+                                          [config]="editorConfig">
+                                        </ckeditor>
+                                      </div>
+
+
+                                      <div class="form-group">
+                                        <label for="image">Image</label>
+                                         <input type="file"  name="image" (change)="onFileSelect($event, 'new')" />
+                                        <br>
+                                        <small *ngIf="error.field == 'image' " class="form-text text-muted">{{error.message}}</small>
+                                      </div>
+
+                                       <div class="form-group" style="display: none">
+                                          <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="public_facebook"  [(ngModel)]="newPost.public_facebook">
+                                          <label class="form-check-label" for="defaultCheck1">
+                                            Public facebook
+                                          </label>
+                                        </div>
+
+
+                                      <div class="form-group">
+                                            <button  class="btn btn-primary" (click)="saveNewPost($event)">Save</button>
+                                      </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                              <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Title</th>
+                                      <th scope="col">Created at</th>
+                                      <th scope="col">Updated at</th>
+                                      <th scope="col">Option</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let post of posts; let i = index">
+                                        <td scope="row">
+                                            {{post.id}}
+                                        </td>
+                                        <td>{{post.title}}</td>
+                                        <td>{{post.created_at}}</td>
+                                        <td>{{post.updated_at}}</td>
+                                        <td>
+                                            <button  (click)="selectedEditPost(post, $event)" class="btn btn-primary">Edit</button>
+                                            <button  class="btn btn-primary" (click)="deletePost(post, $event)">Delete</button>
+                                        </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <ul class="pagination" style="display: flex; color: white; list-style: none;">
+                                  <li style="color: white; margin: 3px;" *ngIf="currentPage != 1">
+                                    <a href="javascript:void(0)"  style="color: white; margin: 3px;"  (click)="getPosts(1)">«</a>
+                                  </li>
+                                  <li style="color: white; margin: 3px;" *ngIf="currentPage != 1">
+                                    <a href="javascript:void(0)" style="color: white; margin: 3px;"   (click)="getPosts(currentPage-1)">‹ Prev</a>
+                                  </li>
+
+                                  <li style="color: white; margin: 3px;" *ngFor="let i of range">
+                                      <a style="color: white; margin: 3px;" href="javascript:void(0)"  (click)="getPosts(i)">{{i}}</a>
+                                  </li>
+
+                                  <li style="color: white; margin: 3px;" *ngIf="currentPage != totalPages"><a style="color: white; margin: 3px;"  (click)="getPosts(currentPage+1)">Next ›</a></li>
+                                  <li style="color: white; margin: 3px;" *ngIf="currentPage != totalPages"><a  style="color: white; margin: 3px;" (click)="getPosts(totalPages)">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="row animated fadeIn" *ngIf="selectedPostStatus">
+                            <div class="col-sm-12 col-lg-12">
+                                <form  class="form-content" (ngSubmit)="saveEditPost($event,'update')">
+                                    <h3>Edit post {{selectedPost.name}}</h3>
+                                    <input type="hidden" [(ngModel)]="selectedPost.id" name="id" >
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" [(ngModel)]="selectedPost.title" class="form-control" id="title" name="title"  placeholder="Enter title">
+                                        <small *ngIf="error.field == 'title' " class="form-text text-muted">{{error.message}}</small>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <ckeditor
+                                          [editor]="Editor"
+                                          [(ngModel)]="selectedPost.description"
+                                          [data]="selectedPost.description"
+                                          name="description"
+                                          [config]="editorConfig"
+
+                                        >
+                                        </ckeditor>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <img *ngIf="selectedPost.image" [src]="base_url+selectedPost.image" style="margin-bottom: 10px" width="250px">
+
+                                         <label for="image">Image</label>
+                                         <input type="file" name="image" (change)="onFileSelect($event, 'update')" />
+                                        <small *ngIf="error.field == 'image' " class="form-text text-muted">{{error.message}}</small>
+                                      </div>
+
+                                      <div class="form-group">
+                                            <button  class="btn btn-primary" (click)="saveEditPost($event)">Save</button>
+                                      </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/Page Content -->
+
+    </div>
+</main>
+

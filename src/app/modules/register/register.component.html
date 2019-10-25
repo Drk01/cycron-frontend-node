@@ -1,0 +1,71 @@
+<app-preloader [status]="preloader"></app-preloader>
+
+<main class="internal-page">		
+    
+    <div class="cd-index cd-main-content">
+
+        <!-- Page Content -->
+        <div id="page-content" class="light-content">
+
+            <!-- Navbar -->
+            <app-navbar></app-navbar>
+
+            <!-- Main -->
+            <div class="internal-main animated fadeIn">   
+                <div class="container-fluid">
+                    <div class="bootstrap-wrapper">
+                        <div class="col-lg-12">
+                            <br>
+                            <br>
+                            <h1 class="title">
+                                Get your <br> exclusive access
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="bootstrap-wrapper">
+                        <div class="col-lg-12">
+                            <form class="form-login" (submit)="register($event)">
+                                <div class="form-group">
+                                    <label class="form-label" [class]="[(errors['name'] && 'error')]">Name</label>
+                                    <input class="au-input-2" type="text" name="name" [class]="[(errors['name'] && 'error')]">
+                                    <div *ngIf="errors['name']">
+                                        <p class="error-text-input">
+                                            {{errors['name']}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" [class]="[(errors['email'] && 'error')]">Email address *</label>
+                                    <input class="au-input-2" type="text" name="email" [class]="[(errors['email'] && 'error')]">
+                                    <div *ngIf="errors['email']">
+                                        <p class="error-text-input">
+                                            {{errors['email']}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" [class]="[(errors['password'] && 'error')]">Password *</label>
+                                    <input class="au-input-2" type="password" name="password" [class]="[(errors['email'] && 'error')]">
+                                    <div *ngIf="errors['password']">
+                                        <p class="error-text-input">
+                                            {{errors['password']}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-action" style="margin-top: 30px;">
+                                    <button class="btn" type="submit">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+            <!--/Main --> 
+            
+            
+        </div>    
+        <!--/Page Content -->
+        
+    </div>
+</main>        
+        
