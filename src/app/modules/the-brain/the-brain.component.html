@@ -1,41 +1,236 @@
 <app-preloader [status]="preloader"></app-preloader>
 
-<main class="internal-page cp_home">		
-    
-    <div class="cd-index cd-main-content">
+<main class="internal-page cp_home">
 
-        <!-- Page Content -->
-        <div id="page-content" class="light-content">
+  <div class="cd-index cd-main-content">
 
-            <!-- Navbar -->
-            <app-navbar></app-navbar>
+    <!-- Page Content -->
+    <div id="page-content" class="light-content">
 
-            <!-- Main -->
-            <div class="internal-main animated fadeIn">   
-              <br>  
-              <br>  
-              <div class="bootstrap-wrapper">
-                <div class="row">
-                    <div class="col-md-8">
+      <!-- Navbar -->
+      <app-navbar></app-navbar>
+
+      <!-- Main -->
+      <div class="internal-main animated fadeIn">
+        <br>
+        <br>
+        <div class="bootstrap-wrapper">
+          <div class="row mb-5">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+              <h3>Last signals</h3>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Stellar (XLM)
+                  </div>
+                  <div class="card-text">
+                    <h2>Stellar Meridian Conf.</h2>
+                    <h5>04 November 2019</h5>
+                    <p class="card-text"> Stellar Meridian conference from Nov 4-5 in Mexico City.</p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://meridian.stellar.org/" rel="nofollow" target="_blank"
+                         class="btn btn-outline-danger btn-block">Source</a>
                     </div>
-                    <div class="col-md-4">
-                      <h3>Last signals</h3>
-                      <ul style="padding: 0; margin: 0;">
-                        <li *ngFor="let signal of signals; let i = index" style="font-family: 'Cutive Mono', monospace;list-style: none;padding: 0;margin: 0;border-bottom: 1px white dotted;padding: 30px 0;">
-                          <pre style="font-family: 'Cutive Mono', monospace; padding: 0; margin: 0;">{{signal.message}}</pre>
-                          <pre style="font-family: 'Cutive Mono', monospace; padding: 0; margin: 0;">{{signal.created_at}}</pre>
-                        </li>
-                      </ul>
-                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <!--/Main --> 
-            
-            
-        </div>    
-        <!--/Page Content -->
-        
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Newscrypto Coin (NWC)
+                  </div>
+                  <div class="card-text">
+                    <h2>New Exchange Listing</h2>
+                    <h5>04 November 2019</h5>
+                    <p class="card-text">NWC will be listed on a new exchange.</p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/NwcPublic/status/1189494027722379264" rel="nofollow" target="_blank"
+                         class="btn btn-outline-danger btn-block">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Stellar (XLM)
+                  </div>
+                  <div class="card-text">
+                    <h2>Live Stream</h2>
+                    <h5>04 November 2019</h5>
+                    <p class="card-text">
+                      Make sure to tune in to SDF Executive Director @DenelleDixon's livestream on Monday at 4:45PM CST
+                      for updates on critical SDF initiatives...
+                    </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/StellarOrg/status/1190390913450725376" rel="nofollow" target="_blank"
+                         class="btn btn-outline-danger btn-block">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    YGGDRASH (YEED)
+                  </div>
+                  <div class="card-text">
+                    <h2>Mainnet launch</h2>
+                    <h5>04 November 2019</h5>
+                    <p class="card-text"> No additional information.
+                    </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/YggdrashNews/status/1174612664040902656" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Cappasity (CAPP) and 2 others
+                  </div>
+                  <div class="card-text">
+                    <h2>Lisbon Web Summit</h2>
+                    <h5>04 November 2019</h5>
+                    <p class="card-text"> Lisbon Web Summit in Lisbon, Portugal from November 4 - 7.
+                    </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://websummit.com/" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Aion (AION)
+                  </div>
+                  <div class="card-text">
+                    <h2>CASCON x EVOKE 2019</h2>
+                    <h5>04 November 2019</h5>
+                    <p class="card-text"> CASCON x EVOKE 2019 from Nov 4 - 6 in Toronto. </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/Aion_Network/status/1189871984068497416" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Nexus (NXS)
+                  </div>
+                  <div class="card-text">
+                    <h2>Tritium Official Release</h2>
+                    <h5>05 November 2019</h5>
+                    <p class="card-text"> "Remember, Remember the 5th of November, the day Tritium changed Distributed
+                      Ledger. Yes, this is an official release date." </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/NexusOfficial/status/1184667948662673408" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    Kava (KAVA)
+                  </div>
+                  <div class="card-text">
+                    <h2>Mainnet Launch</h2>
+                    <h5>05 November 2019</h5>
+                    <p class="card-text"> "Get your validator infrastructure ready. Proposed genesis is Nov 5th, 14:00
+                      UTC." </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/kava_labs" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">TomoChain (TOMO)
+                  </div>
+                  <div class="card-text">
+                    <h2>TomoX Testnet</h2>
+                    <h5>05 November 2019</h5>
+                    <p class="card-text"> "Mark your calendar as TomoX testnet will be live on Tuesday, Nov 5th!" </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/TomoChainANN/status/1186602993728098304" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    NEM (XEM)
+                  </div>
+                  <div class="card-text">
+                    <h2>Innovation Forum - Kyiv</h2>
+                    <h5>05 November 2019</h5>
+                    <p class="card-text"> NEM Foundation Council Member Anton Bosenko will be speaking in the upcoming
+                      International Innovation Forum in Kyiv on November 5, 2019. </p>
+                    <div class="col align-middle mt-5">
+                      <a href="https://twitter.com/NEMofficial/status/1185797797435461632" rel="nofollow"
+                         target="_blank"
+                         class="btn btn-outline-danger btn-block mt-3">Source</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/Main -->
+
+
     </div>
-</main>        
-        
+    <!--/Page Content -->
+
+  </div>
+</main>
