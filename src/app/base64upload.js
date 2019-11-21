@@ -56,7 +56,7 @@ class UploadAdapter {
 			const reader = this.reader = new FileReader();
 
 			reader.onload = function () {
-				request.post("posts/image/content", {image: reader.result}, (res) => {
+				request.post("/posts/image/content", {image: reader.result}, (res) => {
 					resolve(res);
 				})
 			};
