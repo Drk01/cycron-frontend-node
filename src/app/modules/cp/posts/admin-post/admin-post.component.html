@@ -49,7 +49,7 @@
 
                                       <div class="form-group">
                                         <label for="image">Image</label>
-                                         <input type="file"  name="image" (change)="onFileSelect($event, 'new')" />
+                                         <input type="file" id="image" name="image" required="true" (change)="onFileSelect($event, 'new')" />
                                         <br>
                                         <small *ngIf="error.field == 'image' " class="form-text text-muted">{{error.message}}</small>
                                       </div>

@@ -59,7 +59,7 @@ export class AdminPostComponent implements OnInit {
     ng.auth.user((user) => {
       if (!user || (user && user.role != 1)) {
         ng.goTo(['/login']);
-      } 
+      }
     });
 
     if (localStorage.getItem('postAutoSave')) {
@@ -92,15 +92,16 @@ export class AdminPostComponent implements OnInit {
   	var ng = this;
     ng.preloader = true;
 
-    ng.request.get('posts?page='+numberPage, false, (response) => {
-      this.posts = response.data
-      this.totalPages    = response.last_page;
-      this.currentPage   = response.current_page;
+    ng.request.get('/posts?page='+numberPage, false, (response) => {
+
+      this.posts = response.docs;
+      this.totalPages    = response.pages;
+      this.currentPage   = numberPage;
 
       // Pagination Range
       var pages = [];
 
-      for(var i=1;i<=response.last_page;i++) {
+      for(var i=1;i<=this.totalPages;i++) {
         pages.push(i);
       }
 
@@ -146,7 +147,7 @@ export class AdminPostComponent implements OnInit {
     });
   }
 
-  saveNewPost($event){
+ saveNewPost($event){
     $event.preventDefault()
     var ng = this;
     ng.preloader = true;
@@ -197,10 +198,10 @@ export class AdminPostComponent implements OnInit {
     });
   }
 
-  onFileSelect($event,type) {
+  onFileSelect($event,type = 'new') {
     if ($event.target.files.length > 0) {
       const file = $event.target.files[0];
-      if (type == "update") {
+      if (type === 'update') {
       	this.selectedPost.image = $event.target.files[0]
       } else {
       	this.newPost.image = $event.target.files[0]
