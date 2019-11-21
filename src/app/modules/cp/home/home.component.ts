@@ -4,6 +4,7 @@ import * as moment from 'moment';
 
 import { AjaxService, url } from '../../../services/ajax.service'
 import { AuthService } from '../../../services/auth.service'
+import {log} from 'util';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,7 @@ export class CpHomeComponent implements OnInit {
   PostSlug (str) {
       str = str.replace(/^\s+|\s+$/g, ''); // trim
       str = str.toLowerCase();
-    
+
       // remove accents, swap ñ for n, etc
       var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
       var to   = "aaaaeeeeiiiioooouuuunc------";
@@ -64,10 +65,9 @@ export class CpHomeComponent implements OnInit {
         ng.preloader = true;
 
     ng.request.get('posts/all', false, (response) => {
+      ng.posts_billboard = response['posts'].splice(0, 4);
 
-      ng.posts_billboard = response.splice(0, 4);
-      
-      response.filter(item => item.important == 1).splice(0, 5).forEach((post) => {
+      response['posts'].filter(item => item.important == 1).splice(0, 5).forEach((post) => {
         post.type='post';
 
         ng.slider_items.push(post);
@@ -77,9 +77,9 @@ export class CpHomeComponent implements OnInit {
       this.posts_original = [];
       let items = 0;
 
-      response.forEach((post) => {
+      response['posts'].forEach((post) => {
         items += 1;
-        
+
         if (items <= 5) {
           posts.push(post);
         }

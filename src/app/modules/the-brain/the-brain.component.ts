@@ -32,13 +32,13 @@ export class TheBrainComponent implements OnInit {
     this.router.navigate(route);
   }
 
-  
+
   getSignals() {
     var ng = this;
         ng.preloader = true;
 
-    ng.request.getNotApi('getSignals', false, (response) => {
-      ng.signals = response;
+    ng.request.getNotApi('posts', false, (response) => {
+      ng.signals = response['posts'];
       console.log(response);
       ng.preloader = false;
     }, (errors) => {
