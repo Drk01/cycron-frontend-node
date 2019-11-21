@@ -37,10 +37,8 @@ export class ShowPostComponent implements OnInit {
   getPost() {
     var ng = this;
         ng.preloader = true;
-
     ng.request.getNotApi('posts/get/'+ng.route.snapshot.paramMap.get("id"), false, (response) => {
-
-      ng.post = response;
+      ng.post = response['post'];
 
       ng.preloader = false;
 
