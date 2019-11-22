@@ -65,7 +65,8 @@ export class UsersComponent implements OnInit {
     $event.preventDefault()
     var ng = this;
     ng.preloader = true;
-    ng.request.post('users/update/'+this.selectedUser.id, this.selectedUser, (response) => {
+    ng.request.post('auth/update/'+this.selectedUser.id, this.selectedUser, (response) => {
+      console.log(response);
       ng.getUsers()
     }, (errors) => {
       let field = Object.keys(errors)[0];
@@ -92,8 +93,8 @@ export class UsersComponent implements OnInit {
 
     var ng = this;
     ng.preloader = true;
-    ng.request.delete('users/destroy/'+user.id, (response) => {
-       this.getUsers()
+    ng.request.delete('auth/destroy/'+user.id, (response) => {
+       this.getUsers();
     }, (errors) => {
       console.log(errors);
     });
