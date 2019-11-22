@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit {
     ng.auth.user((user) => {
       if (!user || (user && user.role != 1)) {
         ng.goTo(['/login']);
-      } 
+      }
     });
   }
 
@@ -53,8 +53,8 @@ export class UsersComponent implements OnInit {
   	var ng = this;
         ng.preloader = true;
 
-    ng.request.get('users', false, (response) => {
-      this.users = response.data
+    ng.request.get('auth/users', false, (response) => {
+      this.users = response;
       ng.preloader = false;
     }, (errors) => {
       console.log(errors);
