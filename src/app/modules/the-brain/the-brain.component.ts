@@ -37,8 +37,8 @@ export class TheBrainComponent implements OnInit {
     var ng = this;
         ng.preloader = true;
 
-    ng.request.getNotApi('posts', false, (response) => {
-      ng.signals = response['posts'];
+    ng.request.getNotApi('the-brain', false, (response) => {
+      ng.signals = response;
       console.log(response);
       ng.preloader = false;
     }, (errors) => {
